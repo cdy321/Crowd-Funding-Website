@@ -1,0 +1,27 @@
+server:
+  port: 7000
+spring:
+  application:
+    name: cncdy-crowd-pay
+  thymeleaf:
+    prefix: classpath:/template/
+    suffix: .html
+    cache: false
+  redis:
+    host: localhost
+  session:
+    store-type: redis
+eureka:
+  client:
+    service-url:
+      defaultZone: http://localhost:1000/eureka
+ali:
+  pay:
+    alipayPublicKey: MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEA0P/cr4xtEz+7KkyV3psTIKdUEtb715aKIvPZTyTGRmI+kZ3l0c0NYDtVwGG3kcxRUlMi6EJfm1f3pi/P374Ns3+1t8ZS0uLDZJPfgi2plp+lY/pQjE/xDNcCFdVFuwxnK29nBvMgMHIH7LrYL6eFAXTuj0viB56jQgPD5NdVwPIHS60ImlbeUCXzUTkHgPfk9EBOQfVKc2NPZ0hvey8/BaTM3lKjCh+d9hpvRDaFa+GAHynRJXTDDAlx0ikULzAByQSLCAJgqQP/4S0JACVJXFAa9URSqT3c8N/ocyLY6fMg/DUqFpMjZb+7HnPm4JTD/znX+tz0CWPnEnRcZ/CWBQIDAQAB
+    appId: 2021000117644672
+    charset: utf-8
+    gatewayUrl: https://openapi.alipaydev.com/gateway.do
+    merchantPrivateKey: MIIEvQIBADANBgkqhkiG9w0BAQEFAASCBKcwggSjAgEAAoIBAQClHmlwrTZ8RzvvQQWUB9YvqMlYDfBHkC9l2itQZgK2Sjfh0q26I7zJIbRvta048GiPDuoYzksAlggjaMWin289Nur6NCCRLPGfEv3FsDuZwDFTxErdI10gniLJI5FBIQkBbRVR1+Y6sQ58VbZvQiVO8LGyW95GPp5uApFAIz7tm3Vv0u8kgdIwkouBr19v2XLy5CTjeorOFn3oxB3FriUIXC5w3ILVWbH0lhfgPaoL0mCKPsLr6b71oT1DwCJGn1ZL/P+FNqLMbBMQ74k/zdh47ZpTVOTLQbFhUwbx2eHseEOSWCn0rYLhX+E+E95+D9342CFA/AWeQN8ZA+eQtmmtAgMBAAECggEAHmcKHRAXnyxykawUPdxviJj4cbknS9X1lDhmj0gpKa1iurbS/BoGcbY+Be+atIg3iFfDrMuXLcVyPCrXcQkQL2JEQ8uDT5fJ6XNSvKqlXrrvmi/jZPJU/GOBni1pWmedw+B083vgTWA6fZQ+oh+4xN82qNOXirGO9EyOuBOFS7RtxXElo194J1xnVs8rYb0m+zAPaFzn068HNaOPndDeHq8zmDh1IFhI5SX22jVkYrVOjMKSVZa4HwmvSHzF6IcPpDhviwfKLjzpTesscFu7NXU6J05AgITI2p/m3ioIv5V5c26oYc/k4HdIm/z+1A0+Mzr9QRu+X1ilcurG+jKQVQKBgQD82s4j8jJYzA1wRzHSH33wL9iN2LgweNpOIn/XEnF1HToYPEW9zTvbhAjXMor7ig8eRYJZCuWbMDMt86gYJ/VPrlTqgjKU6A93LrmaawjA83h9yTHJrKO6XhBFP3rSg3qv9EI1wYdENPJZ6/y93TrblP5s/3Qll14ybvi0p2geIwKBgQCnLDgMFPJfQm/gapLj32B7I3dOemgO7Dl5L16/NsJSM1zuT/9aByyj+0H2BQjSnMwJThxCq6NtXux49ZcLbcD/e07bd5WlxNAyg05ttMDF8jIaFq1YoFx3dc4bVAfj3TNww3Ffblqx0f756u5Ff6v0BHxI4qholc9J1VaploON7wKBgFJfXaRsNGalIwOezeYsCDUFAUFEhsyTslqd9pO0GG4UtWZLzFSG1acvnkms14YWddJgxpQHbsFdtG6V3/7ulYX9vwAepifIabFj8WcS02k4Z9pifuu6aCRAnIBSq8qEtqU3p5Inl89qiEEvFckslw4Nvcz4c3gDldZMPI1ttAeNAoGAEe/0s5crynzedD37NOgq+gt8KbeIotFF+XLTv8CoaRmJxyheRdKvP4keMr+nirG4UudGsQCpsHqW9QOlCVzlcIRSmcnjDL5peIIOUEcsyBCMv6/fObs7MLY7P0Ns9U4uztKpv4ufv6TAryA+IMbqNGymyUtItrAcZde2TMwRoZECgYEAy5l2MEupd+F5HL3c9sKC8adxQ9kCOQj5AxEBSwgsLaHLXniW1BQFylW7x71ew06OGil4kP69gvfUQXE7IaVC/nPgSqbhcSPqpKKxd1KbLaJW/MT8MXfefeXsEk3RTMPuc3aakY618FArwK4C0/dgC1HTotn7nhDuO8FZg9pKnUk=
+    notifyUrl: http://21t041718c.imwork.net/pay/notify
+    returnUrl: http://21t041718c.imwork.net/pay/return
+    signType: RSA2

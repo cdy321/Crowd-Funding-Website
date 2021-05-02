@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.cdy.crowd.dao.MemberConfirmInfoPODao">
+    <insert id="insert" parameterType="cn.cdy.crowd.entity.po.TMemberConfirmInfoPO">
+        insert into t_member_confirm_info
+        <trim prefix="(" suffix=")" suffixOverrides="," >
+            <if test="id != null" >
+                id,
+            </if>
+            <if test="memberid != null" >
+                memberid,
+            </if>
+            <if test="paynum != null" >
+                paynum,
+            </if>
+            <if test="cardnum != null" >
+                cardnum,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides="," >
+            <if test="id != null" >
+                #{id,jdbcType=INTEGER},
+            </if>
+            <if test="memberid != null" >
+                #{memberid,jdbcType=INTEGER},
+            </if>
+            <if test="paynum != null" >
+                #{paynum,jdbcType=VARCHAR},
+            </if>
+            <if test="cardnum != null" >
+                #{cardnum,jdbcType=VARCHAR},
+            </if>
+        </trim>
+    </insert>
+</mapper>

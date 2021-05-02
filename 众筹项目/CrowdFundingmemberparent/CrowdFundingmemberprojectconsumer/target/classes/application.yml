@@ -1,0 +1,24 @@
+server:
+  port: 5000
+spring:
+  application:
+    name: cncdy-crowd-project
+  thymeleaf:
+    prefix: classpath:/template/
+    suffix: .html
+    cache: false
+  redis:
+    host: localhost
+  session:
+    store-type: redis
+eureka:
+  client:
+    service-url:
+      defaultZone: http://localhost:1000/eureka
+aliyun:
+  oss:
+    accessKeyId: LTAI5tN34mfYpxvTdgAjWbjD
+    accessKeySecret: mvlyCSyMxfyqvkMXJA9XKXaW9iDbAH
+    bucketDomain: http://cncdy123456.oss-cn-beijing.aliyuncs.com
+    bucketName: cncdy123456
+    endPoint: http://oss-cn-beijing.aliyuncs.com

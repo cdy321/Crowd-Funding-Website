@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.cdy.crowd.dao.OrderProjectPODao">
+    <select id="selectOrderProjectVO" resultType="cn.cdy.crowd.entity.vo.OrderProjectVO">
+        SELECT DISTINCT
+        project_name projectName,
+        content returnContent, `description_simple` launchName,
+        t_return.`supportmoney` supportPrice, `freight` freight, `count` returnCount, `signalpurchase` signalPurchase, `purchase` purchase
+        FROM t_project
+        LEFT JOIN t_member_launch_info ON
+        t_project.memberid=t_member_launch_info.memberid
+        LEFT JOIN t_return ON t_project.id=t_return.projectid
+        WHERE t_return.id=#{returnId}
+    </select>
+
+    <insert id="insert" parameterType="cn.cdy.crowd.entity.po.OrderProjectPO">
+         insert into t_order_project (id, project_name, launch_name,
+      return_content, return_count, support_price,
+      freight, order_id)
+    values (#{id}, #{projectName}, #{launchName},
+      #{returnContent}, #{returnCount}, #{supportPrice},
+      #{freight}, #{orderId})
+    </insert>
+</mapper>

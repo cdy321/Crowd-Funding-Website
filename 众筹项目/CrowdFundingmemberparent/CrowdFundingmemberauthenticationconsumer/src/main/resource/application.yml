@@ -1,0 +1,19 @@
+server:
+  port: 4100
+spring:
+  application:
+    name: cncdy-crowd-auth
+  thymeleaf:
+    prefix: classpath:/template/
+    suffix: .html
+  redis:
+    host: localhost
+  session:
+    store-type: redis
+eureka:
+  client:
+    service-url:
+      defaultZone: http://localhost:1000/eureka
+ribbon:
+  eureka:
+    enabled: true

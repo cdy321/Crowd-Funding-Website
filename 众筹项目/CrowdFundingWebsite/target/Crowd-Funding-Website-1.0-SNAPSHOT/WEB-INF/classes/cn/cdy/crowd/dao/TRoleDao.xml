@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.cdy.crowd.dao.TRoleDao">
+
+    <resultMap type="cn.cdy.crowd.entity.TRole" id="TRoleMap">
+        <result property="id" column="id" jdbcType="INTEGER"/>
+        <result property="name" column="name" jdbcType="VARCHAR"/>
+    </resultMap>
+
+    <!--查询单个-->
+    <select id="queryById" resultMap="TRoleMap">
+        select
+        id, name
+        from project_crowd.t_role
+        where id = #{id}
+    </select>
+
+    <!--查询指定行数据-->
+    <select id="queryAllByLimit" resultMap="TRoleMap">
+        select
+        id, name
+        from project_crowd.t_role
+        limit #{offset}, #{limit}
+    </select>
+
+    <!--通过实体作为筛选条件查询-->
+    <select id="queryAll" resultMap="TRoleMap">
+        select
+        id, name
+        from project_crowd.t_role
+        <where>
+            <if test="id != null">
+                and id = #{id}
+            </if>
+            <if test="name != null and name != ''">
+                and name = #{name}
+            </if>
+        </where>
+    </select>
+
+    <!--新增所有列-->
+    <insert id="insert" keyProperty="id" useGeneratedKeys="true">
+        insert into project_crowd.t_role(name)
+        values (#{name})
+    </insert>
+
+    <insert id="insertBatch" keyProperty="id" useGeneratedKeys="true">
+        insert into project_crowd.t_role(name)
+        values
+        <foreach collection="entities" item="entity" separator=",">
+            (#{entity.name})
+        </foreach>
+    </insert>
+
+    <insert id="insertOrUpdateBatch" keyProperty="id" useGeneratedKeys="true">
+        insert into project_crowd.t_role(name)
+        values
+        <foreach collection="entities" item="entity" separator=",">
+            (#{entity.name})
+        </foreach>
+        on duplicate key update
+        name = values(name)
+    </insert>
+
+    <!--通过主键修改数据-->
+    <update id="update">
+        update project_crowd.t_role
+        <set>
+            <if test="name != null and name != ''">
+                name = #{name},
+            </if>
+        </set>
+        where id = #{id}
+    </update>
+
+    <!--通过主键删除-->
+    <delete id="deleteById">
+        delete from project_crowd.t_role where id = #{id}
+    </delete>
+
+    <!--模糊查询-->
+    <select id="getRoleByKeywords" resultMap="TRoleMap">
+        select *
+        from project_crowd.t_role
+        where name like concat("%",#{Keyword},"%")
+    </select>
+
+    <select id="getAssignByAdminId" resultMap="TRoleMap">
+        select id,name
+        from project_crowd.t_role
+        where id in(select role_id from project_crowd.inner_admin_role WHERE
+        admin_id = #{adminId})
+    </select>
+
+    <select id="getNoAssignByAdminId" resultMap="TRoleMap">
+        select id,name
+        from project_crowd.t_role
+        where id not in(select role_id from project_crowd.inner_admin_role WHERE
+        admin_id = #{adminId})
+    </select>
+
+
+</mapper>
+

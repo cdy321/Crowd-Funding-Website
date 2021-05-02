@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.cdy.crowd.dao.MemberLaunchInfoPODao">
+    <insert id="insert" parameterType="cn.cdy.crowd.entity.po.TMemberLaunchInfoPO">
+        insert into t_member_launch_info
+        <trim prefix="(" suffix=")" suffixOverrides="," >
+            <if test="id != null" >
+                id,
+            </if>
+            <if test="memberid != null" >
+                memberid,
+            </if>
+            <if test="descriptionSimple != null" >
+                description_simple,
+            </if>
+            <if test="descriptionDetail != null" >
+                description_detail,
+            </if>
+            <if test="phoneNum != null" >
+                phone_num,
+            </if>
+            <if test="serviceNum != null" >
+                service_num,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides="," >
+            <if test="id != null" >
+                #{id,jdbcType=INTEGER},
+            </if>
+            <if test="memberid != null" >
+                #{memberid,jdbcType=INTEGER},
+            </if>
+            <if test="descriptionSimple != null" >
+                #{descriptionSimple,jdbcType=VARCHAR},
+            </if>
+            <if test="descriptionDetail != null" >
+                #{descriptionDetail,jdbcType=VARCHAR},
+            </if>
+            <if test="phoneNum != null" >
+                #{phoneNum,jdbcType=VARCHAR},
+            </if>
+            <if test="serviceNum != null" >
+                #{serviceNum,jdbcType=VARCHAR},
+            </if>
+        </trim>
+
+    </insert>
+</mapper>

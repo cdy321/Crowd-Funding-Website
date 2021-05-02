@@ -1,0 +1,183 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.cdy.crowd.dao.ProjectPODao">
+    <!-- 为了在ProjectPO得到自增的主键，增加了useGeneratedKeys="true" keyProperty="id"的配置 -->
+    <insert id="insertSelective" useGeneratedKeys="true" keyProperty="id" parameterType="cn.cdy.crowd.entity.po.TProjectPO" >
+        insert into t_project
+        <trim prefix="(" suffix=")" suffixOverrides="," >
+            <if test="id != null" >
+                id,
+            </if>
+            <if test="projectName != null" >
+                project_name,
+            </if>
+            <if test="projectDescription != null" >
+                project_description,
+            </if>
+            <if test="money != null" >
+                money,
+            </if>
+            <if test="day != null" >
+                day,
+            </if>
+            <if test="status != null" >
+                status,
+            </if>
+            <if test="deploydate != null" >
+                deploydate,
+            </if>
+            <if test="supportmoney != null" >
+                supportmoney,
+            </if>
+            <if test="supporter != null" >
+                supporter,
+            </if>
+            <if test="completion != null" >
+                completion,
+            </if>
+            <if test="memberid != null" >
+                memberid,
+            </if>
+            <if test="createdate != null" >
+                createdate,
+            </if>
+            <if test="follower != null" >
+                follower,
+            </if>
+            <if test="headerPicturePath != null" >
+                header_picture_path,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides="," >
+            <if test="id != null" >
+                #{id,jdbcType=INTEGER},
+            </if>
+            <if test="projectName != null" >
+                #{projectName,jdbcType=VARCHAR},
+            </if>
+            <if test="projectDescription != null" >
+                #{projectDescription,jdbcType=VARCHAR},
+            </if>
+            <if test="money != null" >
+                #{money,jdbcType=BIGINT},
+            </if>
+            <if test="day != null" >
+                #{day,jdbcType=INTEGER},
+            </if>
+            <if test="status != null" >
+                #{status,jdbcType=INTEGER},
+            </if>
+            <if test="deploydate != null" >
+                #{deploydate,jdbcType=VARCHAR},
+            </if>
+            <if test="supportmoney != null" >
+                #{supportmoney,jdbcType=BIGINT},
+            </if>
+            <if test="supporter != null" >
+                #{supporter,jdbcType=INTEGER},
+            </if>
+            <if test="completion != null" >
+                #{completion,jdbcType=INTEGER},
+            </if>
+            <if test="memberid != null" >
+                #{memberid,jdbcType=INTEGER},
+            </if>
+            <if test="createdate != null" >
+                #{createdate,jdbcType=VARCHAR},
+            </if>
+            <if test="follower != null" >
+                #{follower,jdbcType=INTEGER},
+            </if>
+            <if test="headerPicturePath != null" >
+                #{headerPicturePath,jdbcType=VARCHAR},
+            </if>
+        </trim>
+    </insert>
+
+    <insert id="insertTypeRelationship">
+        insert into t_project_type(typeid, projectid) values
+        <foreach collection="typeIdList" item="typeId" separator=",">
+            (#{typeId},#{projectId})</foreach>
+    </insert>
+
+    <insert id="insertTagRelationship">
+        insert into t_project_ta(tagid, projectid) values
+        <foreach collection="tagIdList" item="tagId" separator=",">
+            (#{tagId},#{projectId})</foreach>
+    </insert>
+
+    <resultMap id="LoadProtalProjectList" type="cn.cdy.crowd.entity.vo.PortalTypeVO">
+        <id column="id" property="id"/>
+        <result column="name" property="name"/>
+        <result column="remark" property="remark"/>
+        <collection property="portalProjectVOList" column="id" ofType="cn.cdy.crowd.entity.vo.PortalProjectVO" select="cn.cdy.crowd.dao.ProjectPODao.selectPortalProjectVOList"></collection>
+    </resultMap>
+
+
+    <select id="selectPortalProjectVOList" resultType="cn.cdy.crowd.entity.vo.PortalProjectVO">
+        select t_project.id projectId,
+        project_name projectName,
+        money,
+        deploydate deployDate,
+        supportmoney/money*100 percentage,
+        supporter supporter,
+        header_picture_path headerPicturePath
+        from t_project left join t_project_type
+        on t_project.id = t_project_type.projectid
+        where t_project_type.typeid = #{id} order by
+        t_project.id desc limit 0,4
+    </select>
+
+
+    <select id="selectPortalVOList" resultMap="LoadProtalProjectList">
+        select id,name,remark from t_type
+    </select>
+
+    <resultMap type="cn.cdy.crowd.entity.vo.DetailProjectVO"
+               id="loadProjectDetailResultMap">
+        <id column="id" property="projectId"/>
+        <result column="project_name" property="projectName"/>
+        <result column="project_description" property="projectDesc"/>
+        <result column="money" property="money"/>
+        <result column="day" property="day"/>
+        <result column="status" property="status"/>
+        <result column="deploydate" property="deployDate"/>
+        <result column="supportmoney" property="supportMoney"/>
+        <result column="follower" property="followerCount"/>
+        <result column="supporter" property="supporterCount"/>
+        <result column="header_picture_path" property="headerPicturePath"/>
+        <collection
+                property="detailPicturePathList"
+                select="cn.cdy.crowd.dao.ProjectPODao.selectDetailPicturePath" column="id"/>
+        <collection
+                property="detailReturnVOList"
+                select="cn.cdy.crowd.dao.ProjectPODao.selectDetailReturnVO" column="id"/>
+    </resultMap>
+
+    <select id="selectDetailPicturePath" resultType="string">
+        SELECT item_pic_path FROM t_project_item_pic WHERE projectid=#{id}
+    </select>
+
+    <select id="selectDetailReturnVO" resultType="cn.cdy.crowd.entity.vo.DetailReturnVO">
+        select
+       id returnId,
+       supportmoney supportMoney,
+       content,
+       signalpurchase signalPurchase,
+       purchase,
+       freight,
+       returndate returnDate
+       from t_return
+       where projectid=#{id}
+    </select>
+
+    <select id="selectDetailProjectVO" resultMap="loadProjectDetailResultMap">
+        select
+        id, project_name, project_description , money, day,status, deploydate, supportmoney, supporter, supportmoney/money*100 percentage, follower, header_picture_path
+        from
+        t_project
+        where id=#{projectId}
+    </select>
+
+</mapper>

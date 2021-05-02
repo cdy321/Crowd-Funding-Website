@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.cdy.crowd.dao.TMemberPODao">
+    <insert id="insertMember" parameterType="cn.cdy.crowd.entity.po.TMemberPO">
+        insert into t_member
+        (loginacct, userpswd, username, email, authstatus, usertype, realname, cardnum, accttype)
+        values (#{loginacct},#{userpswd},#{username},#{email},#{authstatus}
+        ,#{usertype},#{realname},#{cardnum},#{accttype})
+    </insert>
+
+    <select id="selectMemberByLoginAcct" resultType="cn.cdy.crowd.entity.po.TMemberPO">
+        select * from t_member
+        where loginacct = #{loginacct}
+    </select>
+</mapper>

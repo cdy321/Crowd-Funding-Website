@@ -1,0 +1,17 @@
+server:
+  port: 6000
+spring:
+  application:
+    name: cncdy-crowd-order
+  thymeleaf:
+    prefix: classpath:/template/
+    suffix: .html
+    cache: false
+  redis:
+    host: localhost
+  session:
+    store-type: redis
+eureka:
+  client:
+    service-url:
+      defaultZone: http://localhost:1000/eureka

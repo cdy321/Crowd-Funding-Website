@@ -1,0 +1,144 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.cdy.crowd.dao.TAdminDao">
+
+    <resultMap type="cn.cdy.crowd.entity.TAdmin" id="TAdminMap">
+        <result property="id" column="id" jdbcType="INTEGER"/>
+        <result property="loginAcct" column="login_acct" jdbcType="VARCHAR"/>
+        <result property="userPswd" column="user_pswd" jdbcType="VARCHAR"/>
+        <result property="email" column="email" jdbcType="VARCHAR"/>
+        <result property="createTime" column="create_time" jdbcType="VARCHAR"/>
+        <result property="userName" column="user_name" jdbcType="VARCHAR"/>
+    </resultMap>
+
+    <!--查询单个-->
+    <select id="queryById" resultMap="TAdminMap">
+        select
+        id, login_acct, user_pswd, email, create_time,user_name
+        from project_crowd.t_admin
+        where id = #{id}
+    </select>
+
+    <!--查询指定行数据-->
+    <select id="queryAllByLimit" resultMap="TAdminMap">
+        select
+        id, login_acct, user_pswd, email, create_time,user_name
+        from project_crowd.t_admin
+        limit #{offset}, #{limit}
+    </select>
+
+    <!--通过实体作为筛选条件查询-->
+    <select id="queryAll" resultMap="TAdminMap">
+        select
+        id, login_acct, user_pswd, email, create_time,user_name
+        from project_crowd.t_admin
+        <where>
+            <if test="id != null">
+                and id = #{id}
+            </if>
+            <if test="loginAcct != null and loginAcct != ''">
+                and login_acct = #{loginAcct}
+            </if>
+            <if test="userPswd != null and userPswd != ''">
+                and user_pswd = #{userPswd}
+            </if>
+            <if test="email != null and email != ''">
+                and email = #{email}
+            </if>
+            <if test="createTime != null and createTime != ''">
+                and create_time = #{createTime}
+            </if>
+            <if test="userName != null and userName != ''">
+                and user_name = #{userName}
+            </if>
+        </where>
+    </select>
+
+    <!--新增所有列-->
+    <insert id="insert" keyProperty="id" useGeneratedKeys="true">
+        insert into project_crowd.t_admin(login_acct, user_pswd, email, create_time,user_name)
+        values (#{loginAcct}, #{userPswd}, #{email}, #{createTime}, #{userName})
+    </insert>
+
+    <insert id="insertBatch" keyProperty="id" useGeneratedKeys="true">
+        insert into project_crowd.t_admin(login_acct, user_pswd, email, create_time,user_name)
+        values
+        <foreach collection="entities" item="entity" separator=",">
+            (#{entity.loginAcct}, #{entity.userPswd}, #{entity.email}, #{entity.createTime}, #{entity.userName})
+        </foreach>
+    </insert>
+
+    <insert id="insertOrUpdateBatch" keyProperty="id" useGeneratedKeys="true">
+        insert into project_crowd.t_admin(login_acct, user_pswd, email, create_time,user_name)
+        values
+        <foreach collection="entities" item="entity" separator=",">
+            (#{entity.loginAcct}, #{entity.userPswd}, #{entity.email}, #{entity.createTime}, #{entity.userName})
+        </foreach>
+        on duplicate key update
+        login_acct = values(login_acct) , user_pswd = values(user_pswd) , email = values(email) , create_time =
+        values(create_time) , user_name = values(user_name)
+    </insert>
+
+    <!--通过主键修改数据-->
+    <update id="update">
+        update project_crowd.t_admin
+        <set>
+            <if test="loginAcct != null and loginAcct != ''">
+                login_acct = #{loginAcct},
+            </if>
+            <if test="userPswd != null and userPswd != ''">
+                user_pswd = #{userPswd},
+            </if>
+            <if test="email != null and email != ''">
+                email = #{email},
+            </if>
+            <if test="createTime != null and createTime != ''">
+            create_time = #{createTime},
+        </if>
+            <if test="userName != null and userName != ''">
+                user_name = #{userName},
+            </if>
+        </set>
+        where id = #{id}
+    </update>
+
+    <!--通过主键删除-->
+    <delete id="deleteById">
+        delete from project_crowd.t_admin where id = #{id}
+    </delete>
+
+    <!--通过用户名和密码登录-->
+    <select id="getAdminByLoginAcct" resultMap="TAdminMap">
+        select * from project_crowd.t_admin
+        where login_acct = #{loginAcct}
+    </select>
+
+    <!--模糊查询-->
+    <select id="getAdminByKeywords" resultMap="TAdminMap">
+        select *
+        from project_crowd.t_admin
+        where login_acct like concat("%",#{Keyword},"%")
+        or email like concat("%",#{Keyword},"%") or
+        user_name like concat("%",#{Keyword},"%")
+    </select>
+
+    <delete id="deleteOldRelationship">
+        delete from project_crowd.inner_admin_role
+        where admin_id = #{adminId}
+    </delete>
+
+    <insert id="insertNewRelationship">
+        insert into project_crowd.inner_admin_role(admin_id, role_id)
+        values
+        <foreach collection="roleIdList" item="roleId" separator=",">
+            (#{adminId},#{roleId})
+        </foreach>
+    </insert>
+
+    <select id="selectAdminByLoginAcct" resultMap="TAdminMap">
+        select * from t_admin
+        where login_acct = #{loginAcct}
+    </select>
+
+</mapper>
+

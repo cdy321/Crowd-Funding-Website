@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.cdy.crowd.dao.AddressPODao">
+    <select id="selectAddressByMemberId" resultType="cn.cdy.crowd.entity.po.AddressPO">
+        select
+        id,
+        receive_name receiveName,
+        phone_num phoneNum,
+        address,
+        member_id memberId
+         from t_address
+        where member_id = #{memberId}
+    </select>
+
+    <insert id="insert">
+        insert into t_address(receive_name, phone_num, address, member_id)
+        VALUES (#{receiveName},#{phoneNum},#{address},#{memberId})
+    </insert>
+</mapper>

@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="CompilerConfiguration">
+    <annotationProcessing>
+      <profile default="true" name="Default" enabled="true" />
+      <profile name="Maven default annotation processors profile" enabled="true">
+        <sourceOutputDir name="target/generated-sources/annotations" />
+        <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
+        <outputRelativeToContentRoot value="true" />
+        <module name="CrowdFundingmemberAPI" />
+        <module name="CrowdFundingmemberauthenticationconsumer" />
+        <module name="CrowdFundingmemberentity" />
+        <module name="CrowdFundingmembereureka" />
+        <module name="CrowdFundingmemberprojectconsumer" />
+        <module name="CrowdFundingmemberredisprovider" />
+        <module name="CrowdFundingmemberUtils" />
+        <module name="CrowdFundingmemberzuul" />
+        <module name="CrowdFundingorderconsumer" />
+        <module name="CrowdFundingpayconsumer" />
+        <module name="CrowFundingmembermysqlprovider" />
+      </profile>
+    </annotationProcessing>
+    <bytecodeTargetLevel>
+      <module name="CrowdFundingmemberAPI" target="1.8" />
+      <module name="CrowdFundingmemberauthenticationconsumer" target="1.8" />
+      <module name="CrowdFundingmemberentity" target="1.8" />
+      <module name="CrowdFundingmembereureka" target="1.8" />
+      <module name="CrowdFundingmemberparent" target="1.8" />
+      <module name="CrowdFundingmemberprojectconsumer" target="1.8" />
+      <module name="CrowdFundingmemberredisprovider" target="1.8" />
+      <module name="CrowdFundingmemberUtils" target="1.8" />
+      <module name="CrowdFundingmemberzuul" target="1.8" />
+      <module name="CrowdFundingorderconsumer" target="1.8" />
+      <module name="CrowdFundingpayconsumer" target="1.8" />
+      <module name="CrowFundingmembermysqlprovider" target="1.8" />
+    </bytecodeTargetLevel>
+  </component>
+</project>

@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/CrowFundingmembermysqlprovider/CrowFundingmembermysqlprovider.iml" filepath="$PROJECT_DIR$/CrowFundingmembermysqlprovider/CrowFundingmembermysqlprovider.iml" />
+      <module fileurl="file://$PROJECT_DIR$/CrowdFundingmemberAPI/CrowdFundingmemberAPI.iml" filepath="$PROJECT_DIR$/CrowdFundingmemberAPI/CrowdFundingmemberAPI.iml" />
+      <module fileurl="file://$PROJECT_DIR$/CrowdFundingmemberUtils/CrowdFundingmemberUtils.iml" filepath="$PROJECT_DIR$/CrowdFundingmemberUtils/CrowdFundingmemberUtils.iml" />
+      <module fileurl="file://$PROJECT_DIR$/CrowdFundingmemberauthenticationconsumer/CrowdFundingmemberauthenticationconsumer.iml" filepath="$PROJECT_DIR$/CrowdFundingmemberauthenticationconsumer/CrowdFundingmemberauthenticationconsumer.iml" />
+      <module fileurl="file://$PROJECT_DIR$/CrowdFundingmemberentity/CrowdFundingmemberentity.iml" filepath="$PROJECT_DIR$/CrowdFundingmemberentity/CrowdFundingmemberentity.iml" />
+      <module fileurl="file://$PROJECT_DIR$/CrowdFundingmembereureka/CrowdFundingmembereureka.iml" filepath="$PROJECT_DIR$/CrowdFundingmembereureka/CrowdFundingmembereureka.iml" />
+      <module fileurl="file://$PROJECT_DIR$/CrowdFundingmemberparent.iml" filepath="$PROJECT_DIR$/CrowdFundingmemberparent.iml" />
+      <module fileurl="file://$PROJECT_DIR$/CrowdFundingmemberprojectconsumer/CrowdFundingmemberprojectconsumer.iml" filepath="$PROJECT_DIR$/CrowdFundingmemberprojectconsumer/CrowdFundingmemberprojectconsumer.iml" />
+      <module fileurl="file://$PROJECT_DIR$/CrowdFundingmemberredisprovider/CrowdFundingmemberredisprovider.iml" filepath="$PROJECT_DIR$/CrowdFundingmemberredisprovider/CrowdFundingmemberredisprovider.iml" />
+      <module fileurl="file://$PROJECT_DIR$/CrowdFundingmemberzuul/CrowdFundingmemberzuul.iml" filepath="$PROJECT_DIR$/CrowdFundingmemberzuul/CrowdFundingmemberzuul.iml" />
+      <module fileurl="file://$PROJECT_DIR$/CrowdFundingorderconsumer/CrowdFundingorderconsumer.iml" filepath="$PROJECT_DIR$/CrowdFundingorderconsumer/CrowdFundingorderconsumer.iml" />
+      <module fileurl="file://$PROJECT_DIR$/CrowdFundingpayconsumer/CrowdFundingpayconsumer.iml" filepath="$PROJECT_DIR$/CrowdFundingpayconsumer/CrowdFundingpayconsumer.iml" />
+    </modules>
+  </component>
+</project>

@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.cdy.crowd.dao.ReturnPODao">
+    <insert id="insertReturnPOBatch">
+        insert into t_return(
+        projectid,
+        type,
+        supportmoney,
+        content,
+        count,
+        signalpurchase,
+        purchase,
+        freight,
+        invoice,
+        returndate,
+        describ_pic_path
+        )
+        values <foreach collection="returnPOList" item="returnPO" separator=",">
+        (
+        #{projectId},
+        #{returnPO.type},
+        #{returnPO.supportmoney},
+        #{returnPO.content},
+        #{returnPO.count},
+        #{returnPO.signalpurchase},
+        #{returnPO.purchase},
+        #{returnPO.freight},
+        #{returnPO.invoice},
+        #{returnPO.returndate},
+        #{returnPO.describPicPath}
+        )
+    </foreach>
+    </insert>
+</mapper>
